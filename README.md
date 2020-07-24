@@ -1,29 +1,26 @@
-# onbrand-frontend
+# VueJs + Laravel Test for the company OnBrand
 
-## Project setup
-```
-yarn install
-```
+## INSTALLATION
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+    // Clone the repository
+    git clone git@github.com:farena/onbrand-frontend
+    // Copy the file .env.example.local to .env.local
+    cd onbrand-frontend
+    cp example.env.local .env.local
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+    // Edit the .env.local file to configure the Base URL
+    VUE_APP_BASE_URL=http://onbrand.test
 
-### Run your tests
-```
-yarn run test
-```
+    // Install Dependencies
+    yarn install
+        or with npm
+    npm install
 
-### Lints and fixes files
-```
-yarn run lint
-```
+    // Compile the project
+    yarn build
+        or with npm
+    npm run build
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    // Now all the files are compiled in the folder /dist
+    // You have to point to this folder with apache or nginx
+    // The index file is index.html
