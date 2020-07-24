@@ -8,9 +8,10 @@ export default {
     user: JSON.parse(localStorage.getItem('identity')) || null,
   },
   mutations: {
-    AUTH_SUCCESS(state, tokens, user) {
-      state.tokens = tokens;
+    AUTH_SUCCESS(state, { token, user }) {
+      state.tokens = token;
       state.user = user;
+      console.log(state);
     },
     LOGOUT(state) {
       state.tokens = null;
@@ -30,7 +31,10 @@ export default {
 
             // axios.defaults.headers.common['Authorization'] = token
 
-            commit('AUTH_SUCCESS', res.data.data.token, res.data.data.user);
+            commit('AUTH_SUCCESS', {
+              token: res.data.data.token,
+              user: res.data.data.user,
+            });
             resolve(res);
           })
           .catch((err) => {
