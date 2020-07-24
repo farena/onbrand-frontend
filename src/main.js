@@ -8,6 +8,7 @@ import errorHandler from './mixins/errorHandler';
 import 'vue-tables/dist/vue-tables.css';
 import './assets/sass/vue-tables-custom.scss';
 import 'vuejs-noty/dist/vuejs-noty.css';
+import './assets/fontawesome/css/all.css';
 
 Vue.config.productionTip = false;
 
