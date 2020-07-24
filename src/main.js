@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import errorHandler from './mixins/errorHandler';
+import 'vuejs-noty/dist/vuejs-noty.css';
 
 Vue.config.productionTip = false;
 
