@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import axios from 'axios';
 import VueRouter from 'vue-router';
 import store from '../store/index';
 import Login from '../pages/Login.vue';
@@ -49,6 +50,20 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+/**
+ * Adding token to all the axios request
+ */
+router.beforeEach((to, from, next) => {
+  const token = store.getters.getToken;
+
+  if (token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  } else {
+    axios.defaults.headers.common.Authorization = undefined;
+  }
+  next();
 });
 
 export default router;
