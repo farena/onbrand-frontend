@@ -1,19 +1,19 @@
 <template>
 <div class="signInContainer text-center">
-  <form class="form-signin">
+  <form class="form-signin" @submit.prevent="signIn">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email"
         id="inputEmail"
         class="form-control"
         placeholder="Email address"
-        required="" autofocus="">
+        v-model="form.email">
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password"
         id="inputPassword"
         class="form-control"
         placeholder="Password"
-        required="">
+        v-model="form.password">
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">OnBrand © 2020</p>
     </form>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     return {
@@ -29,6 +31,18 @@ export default {
         password: null,
       },
     };
+  },
+  methods: {
+    ...mapActions(['login']),
+    signIn() {
+      if (!this.form.email || !this.form.password) {
+        this.$noty.error('Complete the form first');
+      } else {
+        this.login(this.form)
+          .then(() => this.$router.push({ name: 'products' }))
+          .catch((err) => this.showError(err));
+      }
+    },
   },
 };
 </script>

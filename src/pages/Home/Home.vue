@@ -1,13 +1,35 @@
 <template>
-  <div></div>
+  <div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">OnBrand</a>
+        <a class="text-light ml-auto" href="#" @click="logOut">Log Out</a>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+        <router-view />
+    </main>
+  </div>
 </template>
 
 <script>
-export default {
+import { mapActions } from 'vuex';
 
+export default {
+  methods: {
+    ...mapActions(['logout']),
+    logOut() {
+      this.logout().then(() => {
+        this.$router.push({ name: 'login' });
+      });
+    },
+  },
 };
 </script>
 
-<style>
-
+<style scoped>
+  main {
+    margin-top: 100px
+  }
 </style>

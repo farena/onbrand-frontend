@@ -1,17 +1,34 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import store from '../store/index';
 import Login from '../pages/Login.vue';
 import Home from '../pages/Home/Home.vue';
 import Products from '../pages/Home/Products.vue';
 
 Vue.use(VueRouter);
 
+const auth = (to, from, next) => {
+  if (store.getters.isLoggedIn) {
+    next();
+    return;
+  }
+  next({ name: 'login' });
+};
+
+const guest = (to, from, next) => {
+  if (!store.getters.isLoggedIn) {
+    next();
+    return;
+  }
+  next({ name: 'home' });
+};
+
 const routes = [
   {
     path: '/',
     name: 'home',
     component: Home,
+    beforeEnter: auth,
     children: [
       {
         path: '/products',
