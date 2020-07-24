@@ -36,6 +36,10 @@ const routes = [
         name: 'products',
         component: Products,
       },
+      {
+        path: '/',
+        redirect: { name: 'products' },
+      },
     ],
   },
   {
