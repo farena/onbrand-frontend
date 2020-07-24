@@ -5,6 +5,7 @@ import store from '../store/index';
 import Login from '../pages/Login.vue';
 import Home from '../pages/Home/Home.vue';
 import Products from '../pages/Home/Products.vue';
+import ProductForm from '../pages/Home/ProductForm.vue';
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
         path: '/products',
         name: 'products',
         component: Products,
+      },
+      {
+        path: '/products/:id',
+        name: 'productForm',
+        component: ProductForm,
       },
       {
         path: '/',
